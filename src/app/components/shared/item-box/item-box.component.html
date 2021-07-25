@@ -1,0 +1,13 @@
+<div class="masonry-item" (click)="onTab()">
+  <div class="card bg-dark">
+    <div class="img-content">
+      <img [src]="item.images | noimage" class="card-img-top img-scale" [alt]="item.name">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ item.name }}</h5>
+      <p class="card-text" *ngIf="artists != null">
+        <span *ngFor="let artist of artists" class="badge rounded-pill bg-primary me-1">{{ artist.name }}</span>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<app-loading [isLoading]="isLoading"></app-loading>
+<div class="row" *ngIf="artista != null">
+  <div class="col-3 col-sm-2">
+    <img
+     #w
+      class="rounded-circle img-art" [style]="'max-height:' + w.offsetWidth + 'px'"
+      [src]="artista.images | noimage"
+      [alt]="artista.name"
+    />
+  </div>
+  <div class="col-8">
+    <h2>{{ artista.name }}</h2>
+    <a [href]="artista.external_urls['spotify']" target="_blank"
+      >Ir a la pagina del artista</a
+    >
+  </div>
+  <div class="col-12 col-sm-2 text-sm-end mt-3 mt-sm-0">
+    <button class="btn btn-success" (click)="goBack()">Regresar</button>
+  </div>
+</div>
+<div class="row mt-3" *ngIf="canciones != null">
+  <div class="col">
+   <div class="table-responsive">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>Album</th>
+            <th>Cancion</th>
+            <th>Vista Previa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of canciones">
+            <td>
+              <img
+                class="rounded-circle"
+                width="40"
+                height="40"
+                [src]="item.album.images | noimage"
+                [alt]="item.name"
+              />
+            </td>
+            <td>{{ item.album.name }}</td>
+            <td>{{ item.name }}</td>
+            <td>
+              <!-- <audio [src]="item.preview_url" controls></audio> -->
+              <iframe
+                [src]="'https://open.spotify.com/embed/track/' | domseguro:item.id"
+                width="300"
+                height="80"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+              ></iframe>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   </div>
+  </div>
+</div>

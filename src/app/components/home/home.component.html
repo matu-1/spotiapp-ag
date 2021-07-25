@@ -1,0 +1,8 @@
+
+<app-loading [isLoading]="isLoading"></app-loading>
+<div class="alert alert-danger" role="alert" *ngIf="error">
+  {{ error }}
+</div>
+<div class="masonry">
+  <app-item-box [item]="item" *ngFor="let item of canciones" (onPressed)="goArtist($event)"></app-item-box>
+</div>
